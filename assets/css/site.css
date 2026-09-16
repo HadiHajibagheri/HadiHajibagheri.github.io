@@ -350,7 +350,7 @@ section { position: relative; }
 .hero-name .ln { display: block; }
 
 .hero-role {
-  font-family: var(--font-mono); font-size: var(--t-small);
+  font-family: var(--font-mono); font-size: var(--t-body); font-weight: 500;
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
   margin-bottom: var(--s4);
   display: flex; flex-wrap: wrap; gap: var(--s2) var(--s3);
@@ -590,7 +590,30 @@ section { position: relative; }
   background: var(--bg-sunken);
   padding-block: var(--s6);
 }
-.footer .container {
+
+/* Contact list: one destination per line, brand mark on the left. The marks are
+   inline SVG so the site keeps its zero third-party requests. */
+.footer-reach {
+  list-style: none; margin: 0 0 var(--s5); padding: 0;
+  display: grid; gap: var(--s3); justify-items: start;
+}
+.footer-reach a {
+  display: inline-flex; align-items: center; gap: var(--s3);
+  font-family: var(--font-mono); font-size: var(--t-small);
+  color: var(--ink-2); text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.footer-reach svg {
+  width: 16px; height: 16px; flex: none;
+  fill: currentColor; color: var(--ink-3);
+  transition: color var(--dur-state) var(--ease);
+}
+.footer-reach a:hover svg,
+.footer-reach a:focus-visible svg { color: var(--signal); }
+
+.footer-meta {
+  border-top: var(--rule);
+  padding-top: var(--s4);
   display: flex; flex-wrap: wrap; gap: var(--s3);
   justify-content: space-between; align-items: center;
 }

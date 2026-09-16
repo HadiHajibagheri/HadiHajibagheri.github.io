@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Hadi Hajibagheri</title>
+<meta name="description" content="Eleven projects by Hadi Hajibagheri across AI inference, retrieval, full-stack web systems, data science, security tooling and creative front-end.">
+<meta name="author" content="Hadi Hajibagheri">
+<meta name="theme-color" content="#08080A">
+<link rel="canonical" href="https://hadihajibagheri.github.io/projects.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Projects — Hadi Hajibagheri">
+<meta property="og:description" content="Eleven projects across AI inference, retrieval, full-stack web systems, data science, security tooling and creative front-end.">
+<meta property="og:url" content="https://hadihajibagheri.github.io/projects.html">
+<meta property="og:image" content="https://hadihajibagheri.github.io/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+<link rel="preload" href="assets/fonts/plex-mono-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="grid-rules" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="container">
+    <a class="brand" href="index.html">Hadi Hajibagheri <span>/ Systems</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="index.html#profile">Profile</a>
+      <a href="index.html#systems">Systems</a>
+      <a href="projects.html" aria-current="true">Work</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="site">
+<main id="main">
+
+<section class="page-head">
+  <div class="container">
+    <p class="micro" style="margin-bottom:var(--s4)">§ 04 · Project index</p>
+    <h1 class="page-title">Projects</h1>
+    <p class="lead">
+      Eleven things, in the same order as the index on the home page. Each one is
+      described by what it does, the single idea holding it up, and what that idea costs.
+    </p>
+    <nav class="jumpbar" aria-label="Jump to a project">
+      <a href="#rocketllm">01 RocketLLM</a>
+      <a href="#meridian">02 Meridian</a>
+      <a href="#marginalia">03 Marginalia</a>
+      <a href="#openings">04 Openings</a>
+      <a href="#counter">05 Counter</a>
+      <a href="#parsa-rag">06 PARSA-RAG</a>
+      <a href="#maintadapt">07 MaintAdapt</a>
+      <a href="#adversariallab">08 AdversarialLab</a>
+      <a href="#web-vibe-security">09 Web-Vibe-Security</a>
+      <a href="#app-vibe-security">10 App-Vibe-Security</a>
+      <a href="#particle-landing">11 3D Particle Landing</a>
+    </nav>
+  </div>
+</section>
+
+<section class="section" style="border-top:0;padding-top:0">
+  <div class="container">
+    <h2 class="vh">All projects</h2>
+
+    <!-- ===================================================================
+         ADDING A PROJECT
+         Copy one <article class="spec"> ... </article> block, paste it at the
+         end of this list, then change: the id, the number, the name, the three
+         description rows, the links and the tags. Finally add a matching row to
+         the table in index.html (§ 04). Full instructions are in README.md.
+         =================================================================== -->
+    <div class="stack">
+
+      <!-- ---------------------------------------------------------- 01 -->
+      <article class="spec" id="rocketllm">
+        <span class="spec-id" aria-hidden="true">01</span>
+        <h3 class="spec-name">RocketLLM</h3>
+        <dl>
+          <div class="spec-row">
+            <dt class="micro">Domain</dt>
+            <dd>AI systems · Inference engineering</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">What it is</dt>
+            <dd>
+              A local inference engine that runs language models bigger than the graphics
+              card they are loaded onto. Rather than holding every weight in video memory at
+              once, it streams them through a fixed memory window and fetches the next layer
+              while the current one is still computing, so the copying hides behind the
+              arithmetic. It exposes an OpenAI-compatible API, which means existing tools can
+              point at it without being modified.
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Mechanism</dt>
+            <dd>Asynchronous layer prefetching across the PCIe bus, tiered caching, fused expert fetching for mixture-of-experts models, and speculative decoding.</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Trade-off</dt>
+            <dd>Streaming weights spends bus bandwidth, so throughput stays below a model that fits entirely in VRAM. The point is that the model runs at all on hardware that could not otherwise host it.</dd>
+          </div>
+        </dl>
+        <div class="spec-foot">
+          <a class="btn" href="https://github.com/HajibagheriLabs/RocketLLM" target="_blank" rel="noopener">Source →</a>
+          <span class="spec-stack"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">CUDA</span></span>
+        </div>
+      </article>
+
+      <!-- ---------------------------------------------------------- 02 -->
+      <article class="spec" id="meridian">
+        <span class="spec-id" aria-hidden="true">02</span>
+        <h3 class="spec-name">Meridian</h3>
+        <dl>
+          <div class="spec-row">
+            <dt class="micro">Domain</dt>
+            <dd>Full-stack · Multi-tenant SaaS</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">What it is</dt>
+            <dd>
+              A multi-tenant business dashboard and CRM — the kind of product where one
+              company must never see another company's data. Instead of trusting every query
+              to remember its filter, the isolation is enforced inside the database itself,
+              so a query that forgets returns nothing at all rather than quietly leaking.
+              Authentication, user roles and subscription billing all sit behind the same
+              boundary.
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Mechanism</dt>
+            <dd>Postgres row-level security bound to a session-scoped tenant context, with role-based access control and Stripe subscription lifecycle handling on top.</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Trade-off</dt>
+            <dd>Every connection has to establish its tenant context before it can read anything, which complicates connection pooling and makes ad-hoc queries harder to write by hand.</dd>
+          </div>
+        </dl>
+        <div class="spec-foot">
+          <a class="btn" href="https://github.com/HajibagheriLabs/Meridian" target="_blank" rel="noopener">Source →</a>
+          <span class="spec-stack"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Drizzle</span><span class="tag">Neon</span><span class="tag">Stripe</span></span>
+        </div>
+      </article>
+
+      <!-- ---------------------------------------------------------- 03 -->
+      <article class="spec" id="marginalia">
+        <span class="spec-id" aria-hidden="true">03</span>
+        <h3 class="spec-name">Marginalia</h3>
+        <dl>
+          <div class="spec-row">
+            <dt class="micro">Domain</dt>
+            <dd>AI retrieval · Document Q&amp;A</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">What it is</dt>
+            <dd>
+              A document question-answering portal that will not answer without showing its
+              working. You upload PDFs and ask questions in ordinary language; every part of
+              the reply links back to the passage it came from, highlighted in a viewer
+              sitting beside the text. An answer that cannot be traced to a source does not
+              get shown at all, which is the whole reason the project exists.
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Mechanism</dt>
+            <dd>Keyword and vector search run in parallel and their rankings are merged by reciprocal rank fusion; citations are then validated on the server against the source text before the answer is released.</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Trade-off</dt>
+            <dd>Validation adds latency to every response, and it will occasionally discard a correct answer whose supporting passage was phrased too loosely to match.</dd>
+          </div>
+        </dl>
+        <div class="spec-foot">
+          <a class="btn" href="https://github.com/HajibagheriLabs/Marginalia" target="_blank" rel="noopener">Source →</a>
+          <span class="spec-stack"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Qdrant</span><span class="tag">Postgres FTS</span></span>
+        </div>
+      </article>
+
+      <!-- ---------------------------------------------------------- 04 -->
+      <article class="spec" id="openings">
+        <span class="spec-id" aria-hidden="true">04</span>
+        <h3 class="spec-name">Openings</h3>
+        <dl>
+          <div class="spec-row">
+            <dt class="micro">Domain</dt>
+            <dd>Full-stack · Scheduling</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">What it is</dt>
+            <dd>
+              A booking engine for services where two people clicking at the same instant
+              must not walk away with the same slot. The obvious approach — check whether the
+              time is free, then write the booking — fails quietly under real traffic,
+              because neither request can see the other one in flight. Here the database
+              refuses the overlap outright, and the application's job is only to turn that
+              refusal into a sensible message.
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Mechanism</dt>
+            <dd>An exclusion constraint over time ranges makes an overlapping booking impossible to store; temporary slot holds and time-zone-correct server scheduling sit on top of it.</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Trade-off</dt>
+            <dd>Competing writes on the same resource serialise, so a rush on one popular slot is slower than a naive insert would be — and correct, which the naive insert is not.</dd>
+          </div>
+        </dl>
+        <div class="spec-foot">
+          <a class="btn" href="https://github.com/HajibagheriLabs/Openings" target="_blank" rel="noopener">Source →</a>
+          <span class="spec-stack"><span class="tag">Next.js</span><span class="tag">Drizzle</span><span class="tag">Postgres</span><span class="tag">Stripe</span></span>
+        </div>
+      </article>
+
+      <!-- ---------------------------------------------------------- 05 -->
+      <article class="spec" id="counter">
+        <span class="spec-id" aria-hidden="true">05</span>
+        <h3 class="spec-name">Counter</h3>
+        <dl>
+          <div class="spec-row">
+            <dt class="micro">Domain</dt>
+            <dd>Full-stack · E-commerce</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">What it is</dt>
+            <dd>
+              An online storefront with the merchant's admin portal attached. Its central
+              problem is the one every shop meets on a busy day: two customers checking out
+              the last item at the same moment, both told it is theirs. Counter reserves
+              stock atomically at checkout and calculates every price on the server, so the
+              amount a customer is charged is never something the browser got to decide.
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Mechanism</dt>
+            <dd>Conditional atomic stock decrements with time-limited reservations, server-authoritative pricing, and split tag caching with live stock updates.</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Trade-off</dt>
+            <dd>Reservations expire on a timer, so an abandoned checkout holds real inventory for a short window. That was chosen deliberately over the alternative, which is overselling.</dd>
+          </div>
+        </dl>
+        <div class="spec-foot">
+          <a class="btn" href="https://github.com/HajibagheriLabs/Counter" target="_blank" rel="noopener">Source →</a>
+          <span class="spec-stack"><span class="tag">Next.js</span><span class="tag">Drizzle</span><span class="tag">Neon</span><span class="tag">Stripe</span></span>
+        </div>
+      </article>
+
+      <!-- ---------------------------------------------------------- 06 -->
+      <article class="spec" id="parsa-rag">
+        <span class="spec-id" aria-hidden="true">06</span>
+        <h3 class="spec-name">PARSA-RAG</h3>
+        <dl>
+          <div class="spec-row">
+            <dt class="micro">Domain</dt>
+            <dd>AI retrieval · Right-to-left language NLP</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">What it is</dt>
+            <dd>
+              A question-answering system for technical and engineering documents written in
+              a right-to-left language. Those documents defeat ordinary search for several
+              reasons at once: the text runs the other way, words join and break in ways
+              Latin-script tooling does not anticipate, and the content that matters is often
+              locked inside tables and diagrams rather than sentences. PARSA-RAG reads the
+              page layout first, describes charts so they can be searched as text, and sends
+              each question to the subject area it belongs to.
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Mechanism</dt>
+            <dd>Structure-aware document parsing, vision-model chart captioning, hybrid dense and learned-sparse retrieval with cross-encoder reranking, and subject-scoped vector collections.</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Trade-off</dt>
+            <dd>Parsing and captioning must finish before anything becomes searchable, so ingesting a document library is an overnight job rather than an instant upload.</dd>
+          </div>
+        </dl>
+        <div class="spec-foot">
+          <a class="btn" href="https://github.com/HajibagheriLabs/PARSA-RAG" target="_blank" rel="noopener">Source →</a>
+          <span class="spec-stack"><span class="tag">Python</span><span class="tag">Docling</span><span class="tag">BGE-M3</span><span class="tag">Qdrant</span></span>
+        </div>
+      </article>
+
+      <!-- ---------------------------------------------------------- 07 -->
+      <article class="spec" id="maintadapt">
+        <span class="spec-id" aria-hidden="true">07</span>
+        <h3 class="spec-name">MaintAdapt</h3>
+        <dl>
+          <div class="spec-row">
+            <dt class="micro">Domain</dt>
+            <dd>Data science · Predictive maintenance</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">What it is</dt>
+            <dd>
+              A study of when a jet engine should come off the wing. Pull it too late and it
+              fails in service, which costs far more than any workshop visit; pull it too
+              early and you throw away flying hours it still had. MaintAdapt treats
+              remaining-useful-life prediction as an input to that decision rather than a
+              leaderboard score — models are compared against classical baselines, their
+              stated confidence is checked against what actually happened, and predictions
+              are turned into an alarm threshold under an openly stated cost model.
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Evidence</dt>
+            <dd>On NASA's C-MAPSS turbofan fleets, alarming on predicted remaining life cuts expected maintenance cost per engine by <span class="n">61–73%</span> against running to failure and by <span class="n">44–60%</span> against the best fixed schedule. Alarming on the lower edge of a calibrated interval does better again, at <span class="n">64–75%</span>.</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Trade-off</dt>
+            <dd>Those figures depend on an assumed cost ratio between an unplanned failure and a wasted cycle. It is stated rather than buried — move the ratio and the best threshold moves with it.</dd>
+          </div>
+        </dl>
+        <div class="spec-foot">
+          <a class="btn" href="https://github.com/HajibagheriLabs/Maintadapt-rul" target="_blank" rel="noopener">Source →</a>
+          <span class="spec-stack"><span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">scikit-learn</span></span>
+        </div>
+      </article>
+
+      <!-- ---------------------------------------------------------- 08 -->
+      <article class="spec" id="adversariallab">
+        <span class="spec-id" aria-hidden="true">08</span>
+        <h3 class="spec-name">AdversarialLab</h3>
+        <dl>
+          <div class="spec-row">
+            <dt class="micro">Domain</dt>
+            <dd>ML research · Adversarial robustness</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">What it is</dt>
+            <dd>
+              A benchmark built to find out whether a model's claimed robustness is real.
+              Published defences often look strong against the attack they were tuned on and
+              collapse against a stronger one, usually because the attack's gradients were
+              obscured rather than the model genuinely improved. This project re-runs
+              defences under explicit threat models, and puts every result through a
+              four-part sanity suite designed to catch that failure before a number is
+              allowed to count.
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Mechanism</dt>
+            <dd>Adversarial training and TRADES on CIFAR-10 and MNIST, evaluated under FGSM, PGD and AutoAttack with gradient-masking diagnostics.</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Trade-off</dt>
+            <dd>Honest evaluation lowers the headline numbers, and it makes the clean-accuracy cost of robustness impossible to hide. That is the point of running it.</dd>
+          </div>
+        </dl>
+        <div class="spec-foot">
+          <a class="btn" href="https://github.com/HajibagheriLabs/Adversariallab-Robustness" target="_blank" rel="noopener">Source →</a>
+          <span class="spec-stack"><span class="tag">Python</span><span class="tag">PyTorch</span></span>
+        </div>
+      </article>
+
+      <!-- ---------------------------------------------------------- 09 -->
+      <article class="spec" id="web-vibe-security">
+        <span class="spec-id" aria-hidden="true">09</span>
+        <h3 class="spec-name">Web-Vibe-Security</h3>
+        <dl>
+          <div class="spec-row">
+            <dt class="micro">Domain</dt>
+            <dd>Security · Static analysis</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">What it is</dt>
+            <dd>
+              Guardrails and audit tooling for web applications written largely by AI coding
+              assistants. The mistakes in that code are strikingly consistent: secrets that
+              end up in the browser bundle, database access rules that were generated but
+              never switched on, endpoints that trust an identifier handed to them by the
+              client, and imported package names nobody ever published. This ships
+              deterministic checks and drop-in configurations for the common assistants so
+              those failures are caught before they reach production.
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Mechanism</dt>
+            <dd>Static analysis rules, agent configuration presets and an auditable check suite — not a model asked to review its own output.</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Trade-off</dt>
+            <dd>Deterministic rules only find the classes of bug they were written for. This narrows a predictable attack surface; it is not a substitute for a real security review.</dd>
+          </div>
+        </dl>
+        <div class="spec-foot">
+          <a class="btn" href="https://github.com/HajibagheriLabs/Web-Vibe-Security" target="_blank" rel="noopener">Source →</a>
+          <span class="spec-stack"><span class="tag">JavaScript</span><span class="tag">Static analysis</span></span>
+        </div>
+      </article>
+
+      <!-- ---------------------------------------------------------- 10 -->
+      <article class="spec" id="app-vibe-security">
+        <span class="spec-id" aria-hidden="true">10</span>
+        <h3 class="spec-name">App-Vibe-Security</h3>
+        <dl>
+          <div class="spec-row">
+            <dt class="micro">Domain</dt>
+            <dd>Security · Mobile and desktop</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">What it is</dt>
+            <dd>
+              The same idea pointed at mobile and desktop applications. AI-generated app code
+              has its own recurring weak points: desktop shells that let web content reach
+              the operating system, channels between processes that accept whatever they are
+              sent, credentials written to disk in plain text, and deep links another app can
+              forge. The toolkit audits for those patterns across the common cross-platform
+              frameworks.
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Mechanism</dt>
+            <dd>Zero-trust defaults and automated checks covering React Native, Flutter, Android, iOS and Electron projects.</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Trade-off</dt>
+            <dd>Coverage is broad but deliberately shallow: it flags structural mistakes, not logic bugs specific to one application.</dd>
+          </div>
+        </dl>
+        <div class="spec-foot">
+          <a class="btn" href="https://github.com/HajibagheriLabs/App-Vibe-Security" target="_blank" rel="noopener">Source →</a>
+          <span class="spec-stack"><span class="tag">JavaScript</span><span class="tag">Electron</span><span class="tag">React Native</span></span>
+        </div>
+      </article>
+
+      <!-- ---------------------------------------------------------- 11 -->
+      <article class="spec" id="particle-landing">
+        <span class="spec-id" aria-hidden="true">11</span>
+        <h3 class="spec-name">3D Particle Landing</h3>
+        <dl>
+          <div class="spec-row">
+            <dt class="micro">Domain</dt>
+            <dd>Creative front-end · WebGL</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">What it is</dt>
+            <dd>
+              A scroll-driven landing page for an AI learning platform, built to show what
+              the front end can do when restraint is not the brief. One cloud of particles
+              morphs between a brain, a light bulb and a globe as you scroll, and every
+              particle is a hollow triangle that spins on its own axis rather than a dot. It
+              is three static files with no build step, no bundler and no backend.
+            </dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Mechanism</dt>
+            <dd>A single Three.js point cloud holding three sets of positions in one buffer, blended in a custom vertex shader by scroll progress with per-particle stagger.</dd>
+          </div>
+          <div class="spec-row">
+            <dt class="micro">Trade-off</dt>
+            <dd>It is a deliberate showpiece — heavier than its content strictly needs, and the opposite discipline to everything else listed here.</dd>
+          </div>
+        </dl>
+        <div class="spec-foot">
+          <span style="display:flex;gap:var(--s2);flex-wrap:wrap">
+            <a class="btn" href="https://hajibagherilabs.github.io/HajibagheriLabs-Education-3D-Landing/" target="_blank" rel="noopener">Live →</a>
+            <a class="btn" href="https://github.com/HajibagheriLabs/HajibagheriLabs-Education-3D-Landing" target="_blank" rel="noopener">Source →</a>
+          </span>
+          <span class="spec-stack"><span class="tag">Three.js</span><span class="tag">GLSL</span><span class="tag">Vanilla JS</span></span>
+        </div>
+      </article>
+
+    </div>
+
+    <p style="margin-top:var(--s8)">
+      <a class="btn" href="index.html">← Back to the index</a>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span class="micro">Hadi Hajibagheri © <span id="year">2026</span></span>
+    <span class="micro"><a class="u-link" href="mailto:tft.hadi85@gmail.com">tft.hadi85@gmail.com</a></span>
+  </div>
+</footer>
+</div>
+
+<nav class="botnav" aria-label="Sections">
+  <a href="index.html#profile">Profile</a>
+  <a href="index.html#systems">Systems</a>
+  <a href="projects.html" aria-current="true">Work</a>
+  <a href="index.html#contact">Contact</a>
+</nav>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
